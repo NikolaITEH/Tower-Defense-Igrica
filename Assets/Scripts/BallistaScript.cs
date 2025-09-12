@@ -4,8 +4,18 @@ public class BallistaScript : MonoBehaviour
 {
 
     private Transform target;
+
+    [Header("Attributes")]
+
     public float range = 15;
+    public float fireRate = 1;
+    private float fireCountdown = 0;
+
+    [Header("Fields")]
     public string enemyTag = "Enemy";
+    public GameObject arrowPrefab;
+    public Transform firePoint;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -70,6 +80,24 @@ public class BallistaScript : MonoBehaviour
         direction.y = 0f;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+        if (fireCountdown <= 0)
+        {
+            Shoot();
+            fireCountdown = 1 / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime; //svake sekunde fireCountdown se smanjuje za 1
+    }
+
+    void Shoot()
+    {
+        GameObject arrowGO = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
+        ArrowScript arrow=arrowGO.GetComponent<ArrowScript>();
+        if (arrow != null) 
+        {
+            arrow.Seek(target);
+        }
     }
 
     private void OnDrawGizmosSelected() //da bi mogli da vidimo range u samom editoru
