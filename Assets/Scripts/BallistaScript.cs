@@ -7,20 +7,20 @@ public class BallistaScript : MonoBehaviour
 
     [Header("Attributes")]
 
-    public float range = 15;
-    public float fireRate = 1;
-    private float fireCountdown = 0;
+    public float range = 15;    //max distanca balliste
+    public float fireRate = 1;  //koliko strela izbacuje po sekundi
+    private float fireCountdown = 0; // tajmer za izbacivanje strela
 
     [Header("Fields")]
-    public string enemyTag = "Enemy";
-    public GameObject arrowPrefab;
-    public Transform firePoint;
+    public string enemyTag = "Enemy"; 
+    public GameObject arrowPrefab; 
+    public Transform firePoint;  //lokacija gde se izbacuje strela
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.5f); //pozivanje funkcije UpdateTarget, prvi put posle 0 sekundi(kad se pokrene program), a kasnije na pola sekunde
     }
 
     void UpdateTarget()
@@ -77,7 +77,9 @@ public class BallistaScript : MonoBehaviour
         }
 
         Vector3 direction=target.position-transform.position;
-        direction.y = 0f;
+
+        direction.y = 0f;   //kako bi se ballista okretala samo oko y ose
+
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 

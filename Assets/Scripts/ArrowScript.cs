@@ -31,9 +31,9 @@ public class ArrowScript : MonoBehaviour
         }
 
         Vector3 direction=target.position-transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = speed * Time.deltaTime;   //koliko arrow treba da putuje u jednom frame-u
 
-        if (direction.magnitude <= distanceThisFrame)
+        if (direction.magnitude <= distanceThisFrame)   //direction.magnitute je distanca do target-a
         {
             HitTarget();
             return;
@@ -41,16 +41,16 @@ public class ArrowScript : MonoBehaviour
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
 
-        transform.rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.LookRotation(direction);    //da se strela okrece ka target-u svaki frame
 
     }
 
     void HitTarget()
     {
         GameObject effectInstance=Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectInstance, 2f);
+        Destroy(effectInstance, 2f);    //efekat se unistava nakon dve sekunde
 
-        Destroy(gameObject);
+        Destroy(gameObject); //unistava se strela
 
     }
 }
