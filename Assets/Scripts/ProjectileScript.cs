@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
@@ -8,6 +9,8 @@ public class ProjectileScript : MonoBehaviour
     public float speed = 40;
 
     public GameObject impactEffect;
+
+    public float explosionRadius = 0;
 
 
     public void Seek(Transform _target)
@@ -41,8 +44,8 @@ public class ProjectileScript : MonoBehaviour
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
 
-        transform.rotation = Quaternion.LookRotation(direction);    //da se strela okrece ka target-u svaki frame
-
+        //transform.rotation = Quaternion.LookRotation(direction);    //da se strela okrece ka target-u svaki frame
+        transform.LookAt(target);
     }
 
     void HitTarget()
@@ -50,7 +53,39 @@ public class ProjectileScript : MonoBehaviour
         GameObject effectInstance=Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectInstance, 2f);    //efekat se unistava nakon dve sekunde
 
-        Destroy(gameObject); //unistava se strela
+        if (explosionRadius > 0)
+        {
+            Explode();
+        }
+        else
+        {
+            Damage(target);
+        }
 
+            Destroy(gameObject); //unistava se strela
+
+    }
+
+    void Damage(Transform enemy)
+    {
+       
+    }
+
+    void Explode()
+    {
+        Collider[] colliders=Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach(Collider collider in colliders)
+        {
+            if (collider.tag == "Enemy")
+            {
+                Damage(collider.transform);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

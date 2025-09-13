@@ -78,4 +78,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileScript
   speed: 35
-  impactEffect: {fileID: 8808602307994411896, guid: fd5c4e3ff718ebd46ae3a83139982cb5, type: 3}
+  impactEffect: {fileID: 8808602307994411896, guid: 1d162c1a8d84ec7479356acaee1d0f78, type: 3}
+  explosionRadius: 5
