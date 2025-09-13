@@ -15,7 +15,8 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    public GameObject standardTurretPrefab;
+    public GameObject ballistaPrefab;
+    public GameObject cannonPrefab;
     
 
     private GameObject turretToBuild;   //trenutno selektovani turret
@@ -25,10 +26,9 @@ public class BuildManager : MonoBehaviour
         return turretToBuild;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SetTurretToBuild(GameObject turret)
     {
-        turretToBuild = standardTurretPrefab;
+        turretToBuild = turret;
     }
 
     // Update is called once per frame

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BallistaScript : MonoBehaviour
+public class TurretScript : MonoBehaviour
 {
 
     private Transform target;
@@ -13,7 +13,7 @@ public class BallistaScript : MonoBehaviour
 
     [Header("Fields")]
     public string enemyTag = "Enemy"; 
-    public GameObject arrowPrefab; 
+    public GameObject projectilePrefab; 
     public Transform firePoint;  //lokacija gde se izbacuje strela
 
 
@@ -94,11 +94,11 @@ public class BallistaScript : MonoBehaviour
 
     void Shoot()
     {
-        GameObject arrowGO = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
-        ArrowScript arrow=arrowGO.GetComponent<ArrowScript>();
-        if (arrow != null) 
+        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        ProjectileScript projectile=projectileGO.GetComponent<ProjectileScript>();
+        if (projectile != null) 
         {
-            arrow.Seek(target);
+            projectile.Seek(target);
         }
     }
 

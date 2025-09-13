@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NodeScript : MonoBehaviour
 {
@@ -13,6 +14,16 @@ public class NodeScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+        if (BuildManager.instance.GetTurretToBuild() == null)   //highlight-ovanje samo kad je selektovan neki turret
+        {
+            return;
+        }
         rend.material.color = hoverColor;   //na mouseover se postavlja boja na hovercolor
     }
 
@@ -23,6 +34,17 @@ public class NodeScript : MonoBehaviour
 
     void OnMouseDown()
     {
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+        if (BuildManager.instance.GetTurretToBuild() == null)   //ako nije selektovan turret, izadji iz funk.
+        {
+            return;
+        }
+
         if (turret != null)     //ako vec postoji turret na node-u izlazi iz funkcije
         {
             Debug.Log("Can't build there!");

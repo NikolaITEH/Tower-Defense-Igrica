@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6671902304045193602}
   - component: {fileID: 1861801340663963351}
   m_Layer: 0
-  m_Name: ArrowImpactEffect
+  m_Name: ProjectileImpactEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

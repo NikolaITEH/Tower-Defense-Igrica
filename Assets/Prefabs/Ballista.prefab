@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4d183e05ee99eba43865cc06ce1d7794, type: 3}
       propertyPath: m_Name
-      value: Ballista 1
+      value: Ballista
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -118,7 +118,7 @@ MonoBehaviour:
   range: 15
   fireRate: 1
   enemyTag: Enemy
-  arrowPrefab: {fileID: 7997168152498292222, guid: fc0af7fa8ac66584895ebfc140b89e27, type: 3}
+  projectilePrefab: {fileID: 7997168152498292222, guid: fc0af7fa8ac66584895ebfc140b89e27, type: 3}
   firePoint: {fileID: 3569761344054387015}
 --- !u!4 &8864901157643934905 stripped
 Transform:

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrowScript : MonoBehaviour
+public class ProjectileScript : MonoBehaviour
 {
 
     private Transform target;
