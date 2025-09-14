@@ -20,8 +20,12 @@ public class WaveSpawnerScript : MonoBehaviour
         }
 
         countdown-=Time.deltaTime; //smanjuje countdown za 1 svaku sekundu
-        waveCountdownText.text = Mathf.Round(countdown).ToString(); //Mathf.Round da izbaci decimale
 
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity); //da countdown ne ode ispod 0
+
+        waveCountdownText.text = Mathf.Round(countdown).ToString(); //Mathf.Round da izbaci decimale
+        
+        //waveCountdownText.text = string.Format("{0:00.00}", countdown); za decimale
     }
 
     IEnumerator SpawnWave() //IEnumerator se koristi kako bi timing ove funkcije radio nezavisno od ostalog 

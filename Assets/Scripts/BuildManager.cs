@@ -17,16 +17,48 @@ public class BuildManager : MonoBehaviour
 
     public GameObject ballistaPrefab;
     public GameObject cannonPrefab;
+
+    public GameObject buildEffect;
     
 
-    private GameObject turretToBuild;   //trenutno selektovani turret
+    private TurretBlueprintScript turretToBuild;   //trenutno selektovani turret
 
-    public GameObject GetTurretToBuild()
+    public bool CanBuild
     {
-        return turretToBuild;
+        get
+        {
+            return turretToBuild != null;
+        }
     }
 
-    public void SetTurretToBuild(GameObject turret)
+    public bool HasGold
+    {
+        get
+        {
+            return PlayerStatsScript.gold >= turretToBuild.cost;
+        }
+    }
+
+    public void BuildTurretOn(NodeScript node)
+    {
+        if (PlayerStatsScript.gold < turretToBuild.cost)
+        {
+            Debug.Log("Not enough gold!");
+            return;
+        }
+
+        PlayerStatsScript.gold-=turretToBuild.cost;
+
+        GameObject turret = Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        node.turret = turret;
+
+        GameObject effect = Instantiate(buildEffect, node.GetBuildPosition() , Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Debug.Log("Turret built! Gold left: " + PlayerStatsScript.gold);
+    }
+
+    public void SelectTurretToBuild(TurretBlueprintScript turret)
     {
         turretToBuild = turret;
     }

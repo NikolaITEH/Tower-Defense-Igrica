@@ -5,12 +5,19 @@ public class NodeScript : MonoBehaviour
 {
     private Color startColor;   //pocetna boja
     public Color hoverColor;    // hover boja
+    public Color notEnoughGoldColor;
 
     public Vector3 positionOffset;  //da bi se turret podigao za 0.5 na y osi
 
-    private GameObject turret;  
+    [Header("Optional")]
+    public GameObject turret;  
 
     private Renderer rend;  //referenca za renderer za node
+
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position+positionOffset;
+    }
 
     private void OnMouseEnter()
     {
@@ -20,11 +27,19 @@ public class NodeScript : MonoBehaviour
             return;
         }
 
-        if (BuildManager.instance.GetTurretToBuild() == null)   //highlight-ovanje samo kad je selektovan neki turret
+        if (!BuildManager.instance.CanBuild)   //highlight-ovanje samo kad je selektovan neki turret
         {
             return;
         }
-        rend.material.color = hoverColor;   //na mouseover se postavlja boja na hovercolor
+
+        if (BuildManager.instance.HasGold)
+        {
+            rend.material.color = hoverColor;   //na mouseover se postavlja boja na hovercolor
+        }else
+        {
+            rend.material.color = notEnoughGoldColor;
+        }
+
     }
 
     private void OnMouseExit()
@@ -40,7 +55,7 @@ public class NodeScript : MonoBehaviour
             return;
         }
 
-        if (BuildManager.instance.GetTurretToBuild() == null)   //ako nije selektovan turret, izadji iz funk.
+        if (!BuildManager.instance.CanBuild)   //ako nije selektovan turret, izadji iz funk.
         {
             return;
         }
@@ -51,8 +66,7 @@ public class NodeScript : MonoBehaviour
             return;
         }
 
-        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();        
-        turret=Instantiate(turretToBuild,transform.position + positionOffset,transform.rotation);;  
+        BuildManager.instance.BuildTurretOn(this);
 
 
     }

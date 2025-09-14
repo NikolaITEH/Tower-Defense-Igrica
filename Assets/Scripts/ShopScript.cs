@@ -3,16 +3,19 @@ using UnityEngine;
 public class ShopScript : MonoBehaviour
 {
 
+    public TurretBlueprintScript ballista;
+    public TurretBlueprintScript cannon;
+
     BuildManager buildManager;
 
-    public void PurchaseBallista()
+    public void SelectBallista()
     {
-        buildManager.SetTurretToBuild(buildManager.ballistaPrefab);
+        buildManager.SelectTurretToBuild(ballista);
     }
 
-    public void PurchaseCannon()
+    public void SelectCannon()
     {
-        buildManager.SetTurretToBuild(buildManager.cannonPrefab);
+        buildManager.SelectTurretToBuild(cannon);
     }
 
 
