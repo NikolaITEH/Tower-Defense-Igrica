@@ -12,6 +12,7 @@ public class ProjectileScript : MonoBehaviour
 
     public float explosionRadius = 0;
 
+    public int damage = 50;
 
     public void Seek(Transform _target)
     {
@@ -68,7 +69,12 @@ public class ProjectileScript : MonoBehaviour
 
     void Damage(Transform enemy)
     {
-       
+        EnemyScript e=enemy.GetComponent<EnemyScript>();
+        if (e != null) 
+        {
+            e.TakeDamage(damage);
+        }
+        
     }
 
     void Explode()

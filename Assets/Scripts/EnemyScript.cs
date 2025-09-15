@@ -7,9 +7,33 @@ public class EnemyScript : MonoBehaviour
     private Transform target;       //sledeca lokacija gde enemy ide, Transform tip sadrzi position, rotation, scale
     private int waypointIndex = 0;  //index waypoint-a
 
+    public int health = 100;
+    public int goldGain = 50;
+
+    public GameObject deathEffect;
+
     private void Start()
     {
         target = WaypointScript.points[0];  //postavljanje prvog waypoint-a kao target
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        PlayerStatsScript.gold += goldGain;
+
+        GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -28,12 +52,18 @@ public class EnemyScript : MonoBehaviour
     void GetNextWaypoint()
     {
         if (waypointIndex >= WaypointScript.points.Length - 1)  //ako je dosao do poslednjeg waypoint-a, brise se
-        { 
-            Destroy(gameObject);    
+        {
+            EndPath();
             return;
         }
         waypointIndex++;
         target=WaypointScript.points[waypointIndex];    //target se postavlja na sledeci waypoint
+    }
+
+    void EndPath()
+    {
+        PlayerStatsScript.lives--;
+        Destroy(gameObject);
     }
 
 }

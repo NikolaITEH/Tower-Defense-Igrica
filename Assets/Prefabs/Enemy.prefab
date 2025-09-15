@@ -125,3 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
   speed: 10
+  health: 100
+  goldGain: 50
+  deathEffect: {fileID: 8003106668951378403, guid: eae8d4576ca8c6148afc7f25de0eb635, type: 3}
