@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TurretScript : MonoBehaviour
@@ -95,8 +96,8 @@ public class TurretScript : MonoBehaviour
     void Shoot()
     {
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        ProjectileScript projectile=projectileGO.GetComponent<ProjectileScript>();
-        if (projectile != null) 
+        ProjectileScript projectile = projectileGO.GetComponent<ProjectileScript>();
+        if (projectile != null)
         {
             projectile.Seek(target);
         }

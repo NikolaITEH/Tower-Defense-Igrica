@@ -34,7 +34,7 @@ public class ProjectileScript : MonoBehaviour
             return;
         }
 
-        Vector3 direction=target.position-transform.position;
+        Vector3 direction = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;   //koliko arrow treba da putuje u jednom frame-u
 
         if (direction.magnitude <= distanceThisFrame)   //direction.magnitute je distanca do target-a
@@ -58,13 +58,13 @@ public class ProjectileScript : MonoBehaviour
         {
             Explode();
         }
-        else
+       else
         {
             Damage(target);
         }
-
-            Destroy(gameObject); //unistava se strela
-
+     
+        Destroy(gameObject); //unistava se strela
+          
     }
 
     void Damage(Transform enemy)

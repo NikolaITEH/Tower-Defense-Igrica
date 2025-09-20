@@ -15,8 +15,6 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    public GameObject ballistaPrefab;
-    public GameObject cannonPrefab;
 
     public GameObject buildEffect;
     

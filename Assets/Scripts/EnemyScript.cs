@@ -12,6 +12,9 @@ public class EnemyScript : MonoBehaviour
 
     public GameObject deathEffect;
 
+    private float originalSpeed;
+    private bool isSlowed = false;
+
     private void Start()
     {
         target = WaypointScript.points[0];  //postavljanje prvog waypoint-a kao target
@@ -64,6 +67,23 @@ public class EnemyScript : MonoBehaviour
     {
         PlayerStatsScript.lives--;
         Destroy(gameObject);
+    }
+
+    public void Slow(float slowAmount, float duration)
+    {
+        if (!isSlowed)
+        {
+            originalSpeed = speed;
+            speed *= (1f - slowAmount);
+            isSlowed = true;
+            Invoke(nameof(RemoveSlow), duration);
+        }
+    }
+
+    void RemoveSlow()
+    {
+        speed = originalSpeed;
+        isSlowed= false;
     }
 
 }
