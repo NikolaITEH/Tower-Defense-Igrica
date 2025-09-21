@@ -10,6 +10,7 @@ public class Catapult : MonoBehaviour
     [Header("Setup Fields")]
     public Transform firePoint;
     public GameObject boulderPrefab;
+    public GameObject rangeIndicator;
 
     [Header("Catapult Arm Settings")]
     public Transform catapultArm;
@@ -27,6 +28,9 @@ public class Catapult : MonoBehaviour
     {
         if (catapultArm != null)
             armRestRotation = catapultArm.localRotation;
+
+        if (rangeIndicator != null)
+            rangeIndicator.SetActive(false);
     }
 
     void Update()
@@ -79,6 +83,13 @@ public class Catapult : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, lookRot, Time.deltaTime * 5f);
             }
         }
+
+        if (rangeIndicator != null)
+        {
+            rangeIndicator.transform.position = transform.position;
+            rangeIndicator.SetActive(isHolding);
+        }
+
     }
 
     void Shoot()
