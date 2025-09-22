@@ -55,14 +55,15 @@ public class NodeScript : MonoBehaviour
             return;
         }
 
-        if (!BuildManager.instance.CanBuild)   //ako nije selektovan turret, izadji iz funk.
-        {
-            return;
-        }
 
         if (turret != null)     //ako vec postoji turret na node-u izlazi iz funkcije
         {
-            Debug.Log("Can't build there!");
+            BuildManager.instance.SelectNode(this);
+            return;
+        }
+
+        if (!BuildManager.instance.CanBuild)   //ako nije selektovan turret, izadji iz funk.
+        {
             return;
         }
 

@@ -20,6 +20,9 @@ public class BuildManager : MonoBehaviour
     
 
     private TurretBlueprintScript turretToBuild;   //trenutno selektovani turret
+    private NodeScript selectedNode;
+
+    public SelectUIScript selectUI;
 
     public bool CanBuild
     {
@@ -59,6 +62,28 @@ public class BuildManager : MonoBehaviour
     public void SelectTurretToBuild(TurretBlueprintScript turret)
     {
         turretToBuild = turret;
+        DeselectNode();
+       
+
+    }
+
+    public void SelectNode(NodeScript node)
+    {
+        if(selectedNode == node)
+        {
+            DeselectNode();
+            return;
+        }
+
+        selectedNode = node;
+        turretToBuild=null;
+        selectUI.SetTarget(node);
+    }
+
+    public void DeselectNode()
+    {
+        selectedNode = null;
+        selectUI.Hide();
     }
 
     // Update is called once per frame
