@@ -3,18 +3,20 @@ using UnityEngine;
 public class GameFunctionalityScript : MonoBehaviour
 {
 
-    private bool gameEnded = false;
+    public static bool gameIsOver;
+
+    public GameObject gameOverUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        gameIsOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameEnded) //u koliko ovo ne uradimo, u konzoli ce se spamovati Game over!
+        if (gameIsOver) //u koliko ovo ne uradimo, u konzoli ce se spamovati Game over!
         {
             return;
         }
@@ -27,8 +29,8 @@ public class GameFunctionalityScript : MonoBehaviour
 
     void EndGame()
     {
-        gameEnded = true;
-        Debug.Log("Game over!");
+        gameIsOver = true;
+        gameOverUI.SetActive(true);
 
     }
 }

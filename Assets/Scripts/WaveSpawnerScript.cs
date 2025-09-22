@@ -31,6 +31,7 @@ public class WaveSpawnerScript : MonoBehaviour
     IEnumerator SpawnWave() //IEnumerator se koristi kako bi timing ove funkcije radio nezavisno od ostalog 
     {                       //Ova funkcija omogucava da se u svakom novom wave-u, enemy-ji tog wave-a spawnuju na 0.5 sekundi
         waveIndex++;
+        PlayerStatsScript.Rounds++;
 
         for (int i = 0; i < waveIndex; i++)
         {
