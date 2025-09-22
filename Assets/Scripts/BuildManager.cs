@@ -40,25 +40,6 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    public void BuildTurretOn(NodeScript node)
-    {
-        if (PlayerStatsScript.gold < turretToBuild.cost)
-        {
-            Debug.Log("Not enough gold!");
-            return;
-        }
-
-        PlayerStatsScript.gold-=turretToBuild.cost;
-
-        GameObject turret = Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
-        node.turret = turret;
-
-        GameObject effect = Instantiate(buildEffect, node.GetBuildPosition() , Quaternion.identity);
-        Destroy(effect, 5f);
-
-        Debug.Log("Turret built! Gold left: " + PlayerStatsScript.gold);
-    }
-
     public void SelectTurretToBuild(TurretBlueprintScript turret)
     {
         turretToBuild = turret;
@@ -84,6 +65,11 @@ public class BuildManager : MonoBehaviour
     {
         selectedNode = null;
         selectUI.Hide();
+    }
+
+    public TurretBlueprintScript GetTurretToBuild()
+    {
+        return turretToBuild;
     }
 
     // Update is called once per frame

@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,14 +11,39 @@ public class NodeScript : MonoBehaviour
 
     public Vector3 positionOffset;  //da bi se turret podigao za 0.5 na y osi
 
+
     [Header("Optional")]
-    public GameObject turret;  
+    public GameObject turret;
+    public TurretBlueprintScript turretBlueprint;
+    public bool isUpgraded = false;
 
     private Renderer rend;  //referenca za renderer za node
 
     public Vector3 GetBuildPosition()
     {
         return transform.position+positionOffset;
+    }
+
+
+    void BuildTurret(TurretBlueprintScript blueprint)
+    {
+        if (PlayerStatsScript.gold < blueprint.cost)
+        {
+            Debug.Log("Not enough gold!");
+            return;
+        }
+
+        PlayerStatsScript.gold -= blueprint.cost;
+
+        GameObject _turret = Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        turretBlueprint = blueprint;
+
+        GameObject effect = Instantiate(BuildManager.instance.buildEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Debug.Log("Turret built!");
     }
 
     private void OnMouseEnter()
@@ -67,9 +94,30 @@ public class NodeScript : MonoBehaviour
             return;
         }
 
-        BuildManager.instance.BuildTurretOn(this);
+        BuildTurret(BuildManager.instance.GetTurretToBuild());
 
+    }
 
+    public void UpgradeTurret()
+    {
+        if (PlayerStatsScript.gold < turretBlueprint.upgradeCost)
+        {
+            Debug.Log("Not enough gold to upgrade!");
+            return;
+        }
+
+        PlayerStatsScript.gold -= turretBlueprint.upgradeCost;
+
+        Destroy(turret);
+
+        GameObject _turret = Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        GameObject effect = Instantiate(BuildManager.instance.buildEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        isUpgraded = true;
+        Debug.Log("Turret upgraded!");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
