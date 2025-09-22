@@ -5,7 +5,6 @@ public class CameraControllerScript : MonoBehaviour
 
     public float panSpeed = 30;
     public float panBorderThickness = 10;
-    private bool movement = true;
     public float scrollSpeed = 5;
     public float minY = 10;
     public float maxY = 80;
@@ -25,15 +24,6 @@ public class CameraControllerScript : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            movement = !movement;
-        }
-
-        if (!movement)
-        {
-            return;
-        }
 
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
