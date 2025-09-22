@@ -3136,6 +3136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   ui: {fileID: 1592935200}
   upgradeCost: {fileID: 582282449}
+  sellAmount: {fileID: 1144995872}
   upgradeButton: {fileID: 1813004386}
 --- !u!1001 &327878717
 PrefabInstance:
@@ -10604,7 +10605,7 @@ GameObject:
   - component: {fileID: 1144995873}
   - component: {fileID: 1144995872}
   m_Layer: 0
-  m_Name: SellCost
+  m_Name: SellAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14041,7 +14042,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1508332778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 323167202}
+        m_TargetAssemblyTypeName: SelectUIScript, Assembly-CSharp
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1508332778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18944,12 +18957,12 @@ MonoBehaviour:
   cannon:
     prefab: {fileID: 3032957883755988166, guid: c3ba3f1463ed6234485cb8c8f51ce1ae, type: 3}
     cost: 250
-    upgradedPrefab: {fileID: 0}
+    upgradedPrefab: {fileID: 3032957883755988166, guid: 45770f856aebae7449ee056aa779dec8, type: 3}
     upgradeCost: 100
   catapult:
     prefab: {fileID: 3934303951273622087, guid: d688afcb005793d44a0c33d89cd3af25, type: 3}
     cost: 350
-    upgradedPrefab: {fileID: 0}
+    upgradedPrefab: {fileID: 3934303951273622087, guid: 99d1cf232e289a040abd75e9bfdc4c7c, type: 3}
     upgradeCost: 200
 --- !u!1001 &1980132704
 PrefabInstance:
@@ -19201,6 +19214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   buildEffect: {fileID: 8003106668951378403, guid: 473df95b8ca9963488876f61f4f18689, type: 3}
+  sellEffect: {fileID: 645850312955544720, guid: ee504a4db91b67c4a87ba0f2f0a5af9b, type: 3}
   selectUI: {fileID: 323167202}
 --- !u!114 &1993453034
 MonoBehaviour:

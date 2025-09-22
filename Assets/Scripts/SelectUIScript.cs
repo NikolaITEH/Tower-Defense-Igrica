@@ -10,6 +10,8 @@ public class SelectUIScript : MonoBehaviour
 
     public TextMeshProUGUI upgradeCost;
 
+    public TextMeshProUGUI sellAmount;
+
     public Button upgradeButton;
 
 
@@ -29,7 +31,7 @@ public class SelectUIScript : MonoBehaviour
             upgradeButton.interactable = false;
         }
 
-
+        sellAmount.text=target.turretBlueprint.GetSellAmount() + " gold";
 
             ui.SetActive(true);
     }
@@ -43,6 +45,12 @@ public class SelectUIScript : MonoBehaviour
     public void Upgrade()
     {
         target.UpgradeTurret();
+        BuildManager.instance.DeselectNode();
+    }
+
+    public void Sell()
+    {
+        target.SellTurret();
         BuildManager.instance.DeselectNode();
     }
 

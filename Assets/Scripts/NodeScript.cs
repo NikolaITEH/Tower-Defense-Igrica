@@ -120,6 +120,19 @@ public class NodeScript : MonoBehaviour
         Debug.Log("Turret upgraded!");
     }
 
+    public void SellTurret()
+    {
+        PlayerStatsScript.gold +=turretBlueprint.GetSellAmount();
+
+        GameObject effect = Instantiate(BuildManager.instance.sellEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Destroy(turret);
+
+        turretBlueprint=null;
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
