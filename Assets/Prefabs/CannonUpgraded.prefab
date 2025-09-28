@@ -141,3 +141,5 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 1417908159148740053, guid: c5a6b5bdd71de1c468f4a4ebfcedb096, type: 3}
   firePoint: {fileID: 6646660599150484054}
+  isCannon: 1
+  cannonFireEffect: {fileID: 4727102124697734387, guid: 7d017a9526738854bafa19463ceacdeb, type: 3}

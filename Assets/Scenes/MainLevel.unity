@@ -4355,6 +4355,90 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2009423482620676882, guid: dd7b9370c7aef2645b800c0e77691ac0, type: 3}
   m_PrefabInstance: {fileID: 419325685}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &426150334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 232597931394547632, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814267959918588759, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814267959918588759, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -423902265, guid: 790a9c2ec2c3b76418ec8c1a39e85723, type: 3}
+    - target: {fileID: 1814267959918588759, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.77733
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.88218
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714984305879818819, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910370286415088219, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 426150335}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+--- !u!114 &426150335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1814267959918588759, guid: da0bfe654945d3d4981e013b0e50bd5a, type: 3}
+  m_PrefabInstance: {fileID: 426150334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &428729706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22020,3 +22104,4 @@ SceneRoots:
   - {fileID: 2093235883}
   - {fileID: 125487880}
   - {fileID: 323167201}
+  - {fileID: 426150334}

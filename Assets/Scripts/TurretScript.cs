@@ -17,6 +17,9 @@ public class TurretScript : MonoBehaviour
     public GameObject projectilePrefab; 
     public Transform firePoint;  //lokacija gde se izbacuje strela
 
+    public bool isCannon=false;
+    public GameObject cannonFireEffect;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -101,6 +104,14 @@ public class TurretScript : MonoBehaviour
         {
             projectile.Seek(target);
         }
+
+        if (isCannon)
+        {
+            Vector3 cannonEffectOffset = firePoint.forward * 0.3f;
+            GameObject effect = Instantiate(cannonFireEffect, firePoint.position + cannonEffectOffset, firePoint.rotation);
+            Destroy(effect, 2f);
+        }
+
     }
 
     private void OnDrawGizmosSelected() //da bi mogli da vidimo range u samom editoru

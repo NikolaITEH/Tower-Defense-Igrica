@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class EnemyScript : MonoBehaviour
     private Transform target;       //sledeca lokacija gde enemy ide, Transform tip sadrzi position, rotation, scale
     private int waypointIndex = 0;  //index waypoint-a
 
-    public int health = 100;
+    public float startHealth = 100;
+    private float health;
     public int goldGain = 50;
 
     public GameObject deathEffect;
@@ -15,14 +17,21 @@ public class EnemyScript : MonoBehaviour
     private float originalSpeed;
     private bool isSlowed = false;
 
+    [Header("Unity")]
+    public Image healthBar;
+
     private void Start()
     {
         target = WaypointScript.points[0];  //postavljanje prvog waypoint-a kao target
+        health = startHealth;
     }
 
     public void TakeDamage(int amount)
     {
         health -= amount;
+
+        healthBar.fillAmount = health / startHealth;
+
         if (health <= 0)
         {
             Die();
