@@ -6,6 +6,8 @@ public class GameOverScript : MonoBehaviour
 {
 
     public TextMeshProUGUI roundsText;
+    public SceneFaderScript sceneFader;
+    public string menuSceneName = "MainMenu";
 
     private void OnEnable()
     {
@@ -14,12 +16,12 @@ public class GameOverScript : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void Menu()
     {
-        Debug.Log("Go to menu.");
+        sceneFader.FadeTo(menuSceneName);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

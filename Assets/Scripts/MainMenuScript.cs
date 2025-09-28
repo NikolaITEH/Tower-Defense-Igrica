@@ -6,9 +6,11 @@ public class MainMenuScript : MonoBehaviour
 
     public string levelToLoad = "MainLevel";
 
+    public SceneFaderScript sceneFader;
+
     public void Play()
     {
-        SceneManager.LoadScene(levelToLoad);
+        sceneFader.FadeTo(levelToLoad);
     }
 
     public void Quit()

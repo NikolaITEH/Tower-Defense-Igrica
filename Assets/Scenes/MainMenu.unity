@@ -406,6 +406,74 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1001 &530511561
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1775894973250397564, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_Name
+      value: SceneFader
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 706.29095
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 328.55072
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 141.17505
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632108450166689918, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+--- !u!114 &530511562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5917068788524281740, guid: c8bee5ea9352ac44c84f04ec36840223, type: 3}
+  m_PrefabInstance: {fileID: 530511561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe2e2a50dc45a84a8df4a1d536dbbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &601943725
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   levelToLoad: MainLevel
+  sceneFader: {fileID: 530511562}
 --- !u!4 &601943727
 Transform:
   m_ObjectHideFlags: 0
@@ -21195,3 +21264,4 @@ SceneRoots:
   - {fileID: 1336391546}
   - {fileID: 1144102012946854234}
   - {fileID: 601943727}
+  - {fileID: 530511561}
