@@ -3,8 +3,9 @@ using System.Collections;
 using TMPro;
 public class WaveSpawnerScript : MonoBehaviour
 {
+    public static int enemiesAlive = 0;
+    public WaveScript[] waves;
 
-    public Transform enemyPrefab; //enemy
     public float waveTimer = 5;   //na koliko sekundi spawnuje wave
     private float countdown = 2;  // za odbrojavanje do sledeceg wave-a
     private int waveIndex = 0;   //redni broj wave-a
@@ -13,10 +14,16 @@ public class WaveSpawnerScript : MonoBehaviour
 
     private void Update()
     {
+        if (enemiesAlive > 0)
+        {
+            return;
+        }
+
         if (countdown <= 0) //kada je countdown 0, spawn-uje novi wave
         {
             StartCoroutine(SpawnWave());
             countdown = waveTimer;  //resetuje countdown na vreme izmedju wave-ova
+            return;
         }
 
         countdown-=Time.deltaTime; //smanjuje countdown za 1 svaku sekundu
@@ -30,19 +37,34 @@ public class WaveSpawnerScript : MonoBehaviour
 
     IEnumerator SpawnWave() //IEnumerator se koristi kako bi timing ove funkcije radio nezavisno od ostalog 
     {                       //Ova funkcija omogucava da se u svakom novom wave-u, enemy-ji tog wave-a spawnuju na 0.5 sekundi
-        waveIndex++;
         PlayerStatsScript.Rounds++;
 
-        for (int i = 0; i < waveIndex; i++)
+        WaveScript wave = waves[waveIndex];
+
+        foreach (EnemySpawnEntry entry in wave.enemies)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f); //pomocu ovoga ce se SpawnEnemy() pozvati na svakih 0.5 sekundi
+            for (int i = 0; i < entry.count; i++)
+            {
+                SpawnEnemy(entry.enemyPrefab);
+                yield return new WaitForSeconds(1f / wave.rate); //pomocu ovoga ce se SpawnEnemy() pozvati na svakih 0.5 sekundi
+            }
+
+        }
+
+        waveIndex++;
+
+        if (waveIndex == waves.Length)
+        {
+            Debug.Log("Level Won!");
+            this.enabled = false;
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation); //spawnuje enemy-ja na odgovarajucu poziciju i rotaciju
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation); //spawnuje enemy-ja na odgovarajucu poziciju i rotaciju
+        enemiesAlive++;
     }
+
 
 }

@@ -36,7 +36,10 @@ public class TurretScript : MonoBehaviour
 
             if (distanceToCurrent <= range)
             {
-                return; //ostavlja trenutni target
+                EnemyScript targetEnemy = target.GetComponent<EnemyScript>();
+                if (targetEnemy == null || targetEnemy.IsDead) target = null;
+
+                if (target != null) return;
             }
             else
             {
@@ -52,6 +55,9 @@ public class TurretScript : MonoBehaviour
 
         foreach (GameObject enemy in enemies) 
         {
+
+            EnemyScript enemyScript = enemy.GetComponent<EnemyScript>();
+            if (enemyScript == null || enemyScript.IsDead) continue;
             //za svakog enemy-ja trazimo distancu do njega
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
 
@@ -79,6 +85,9 @@ public class TurretScript : MonoBehaviour
         {
             return;
         }
+
+        EnemyScript targetEnemy = target.GetComponent<EnemyScript>();
+        if (targetEnemy == null || targetEnemy.IsDead) { target = null; return; }
 
         Vector3 direction=target.position-transform.position;
 

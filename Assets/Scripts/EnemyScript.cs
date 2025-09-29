@@ -20,10 +20,21 @@ public class EnemyScript : MonoBehaviour
     [Header("Unity")]
     public Image healthBar;
 
+
+    private bool isDead = false;
+    public bool IsDead => isDead;
+    private Animator animator;
+    public Transform model;
+
     private void Start()
     {
         target = WaypointScript.points[0];  //postavljanje prvog waypoint-a kao target
         health = startHealth;
+
+        
+        animator = GetComponentInChildren<Animator>();
+        animator.Play("walk");
+        
     }
 
     public void TakeDamage(int amount)
@@ -40,17 +51,31 @@ public class EnemyScript : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
+        isDead = true;
+
         PlayerStatsScript.gold += goldGain;
 
         GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
+        WaveSpawnerScript.enemiesAlive--;
 
-        Destroy(gameObject);
+
+        animator.SetTrigger("die");
+        speed = 0f;
+        Destroy(gameObject, 2f);
+
     }
 
     private void Update()
     {
         Vector3 direction = target.position - transform.position;   //pravac se dobija kad se od pozicije target-a oduzme trenutna pozicija enemy-ja
+
+        if (direction != Vector3.zero && model != null)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            model.rotation = Quaternion.Slerp(model.rotation, lookRotation, Time.deltaTime * 10f);
+        }
 
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);  //pomeranje enemy-ja
         //Space.World - enemy se pomera u globalnom koordinatnom sistemu scene, ne zavisi od rotacije objekta.
@@ -58,7 +83,7 @@ public class EnemyScript : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) <= 0.2)   //kada enemy dodje na 0.2 od target-a, dobija se sledeci waypoint
         {
             GetNextWaypoint();
-        }    
+        }
     }
 
     void GetNextWaypoint()
@@ -75,6 +100,7 @@ public class EnemyScript : MonoBehaviour
     void EndPath()
     {
         PlayerStatsScript.lives--;
+        WaveSpawnerScript.enemiesAlive--;
         Destroy(gameObject);
     }
 
