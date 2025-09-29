@@ -7,10 +7,13 @@ public class GameFunctionalityScript : MonoBehaviour
 
     public GameObject gameOverUI;
 
+    public GameObject levelCompleteUI;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameIsOver = false;
+        gameIsOver = false; 
     }
 
     // Update is called once per frame
@@ -32,5 +35,11 @@ public class GameFunctionalityScript : MonoBehaviour
         gameIsOver = true;
         gameOverUI.SetActive(true);
 
+    }
+
+    public void WinLevel()
+    {
+        gameIsOver = true;
+        levelCompleteUI.SetActive(true);
     }
 }

@@ -43,7 +43,7 @@ public class EnemyScript : MonoBehaviour
 
         healthBar.fillAmount = health / startHealth;
 
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
             Die();
         }
@@ -59,6 +59,7 @@ public class EnemyScript : MonoBehaviour
         GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
         WaveSpawnerScript.enemiesAlive--;
+        WaveSpawnerScript.totalEnemies--;
 
 
         animator.SetTrigger("die");

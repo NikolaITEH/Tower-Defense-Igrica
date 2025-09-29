@@ -12,14 +12,39 @@ public class WaveSpawnerScript : MonoBehaviour
     public Transform spawnPoint;  //lokacija gde ce se spawnovati wave
     public TextMeshProUGUI waveCountdownText;
 
+
+    public static int totalEnemies=0;
+    public GameFunctionalityScript gameFunctionality;
+
+    
+
+    private void Start()
+    {
+
+        foreach (WaveScript wave in waves)
+        {
+            foreach (EnemySpawnEntry entry in wave.enemies)
+            {
+                totalEnemies += entry.count;
+            }
+        }
+
+    }
+
     private void Update()
     {
+        if (totalEnemies == 0)
+        {
+            gameFunctionality.WinLevel();
+            this.enabled = false;
+        }
+
         if (enemiesAlive > 0)
         {
             return;
         }
 
-        if (countdown <= 0) //kada je countdown 0, spawn-uje novi wave
+        if (countdown <= 0 && waveIndex<waves.Length) //kada je countdown 0, spawn-uje novi wave
         {
             StartCoroutine(SpawnWave());
             countdown = waveTimer;  //resetuje countdown na vreme izmedju wave-ova
@@ -53,11 +78,13 @@ public class WaveSpawnerScript : MonoBehaviour
 
         waveIndex++;
 
-        if (waveIndex == waves.Length)
+        /*
+        if (waveIndex == waves.Length && totalEnemies==0)
         {
-            Debug.Log("Level Won!");
+            gameFunctionality.WinLevel();
             this.enabled = false;
         }
+        */
     }
 
     void SpawnEnemy(GameObject enemy)

@@ -1,19 +1,20 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
 
-public class GameOverScript : MonoBehaviour
+public class LevelCompletedScript : MonoBehaviour
 {
+    public string nextLevel = "Level2";
+    public int levelToUnlock = 2;
 
-    public SceneFaderScript sceneFader;
     public string menuSceneName = "MainMenu";
 
+    public SceneFaderScript sceneFader;
 
-    public void Retry()
+
+    public void Continue()
     {
-        sceneFader.FadeTo(SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetInt("levelReached", levelToUnlock);
+        sceneFader.FadeTo(nextLevel);
     }
-
     public void Menu()
     {
         sceneFader.FadeTo(menuSceneName);
