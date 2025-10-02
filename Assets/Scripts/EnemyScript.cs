@@ -102,6 +102,7 @@ public class EnemyScript : MonoBehaviour
     {
         PlayerStatsScript.lives--;
         WaveSpawnerScript.enemiesAlive--;
+        WaveSpawnerScript.totalEnemies--;
         Destroy(gameObject);
     }
 

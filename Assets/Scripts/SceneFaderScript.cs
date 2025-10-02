@@ -12,6 +12,7 @@ public class SceneFaderScript : MonoBehaviour
 
     public void FadeTo(string scene)
     {
+        Time.timeScale = 1f;
         StartCoroutine(FadeOut(scene));
     }
 
@@ -21,7 +22,7 @@ public class SceneFaderScript : MonoBehaviour
 
         while (t > 0f)
         {
-            t -= Time.deltaTime;
+            t -= Time.unscaledDeltaTime;
             float a=curve.Evaluate(t);
             image.color = new Color(0f, 0f, 0f, a);
             yield return 0;
@@ -32,9 +33,9 @@ public class SceneFaderScript : MonoBehaviour
     {
         float t = 0f;
 
-        while (t < 0f)
+        while (t < 1f)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             float a = curve.Evaluate(t);
             image.color = new Color(0f, 0f, 0f, a);
             yield return 0;

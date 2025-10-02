@@ -21,6 +21,9 @@ public class WaveSpawnerScript : MonoBehaviour
     private void Start()
     {
 
+        enemiesAlive = 0;
+        totalEnemies = 0;
+
         foreach (WaveScript wave in waves)
         {
             foreach (EnemySpawnEntry entry in wave.enemies)

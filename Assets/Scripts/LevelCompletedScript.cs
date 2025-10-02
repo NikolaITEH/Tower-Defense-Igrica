@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class LevelCompletedScript : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class LevelCompletedScript : MonoBehaviour
     public string menuSceneName = "MainMenu";
 
     public SceneFaderScript sceneFader;
+
+    public Button continueButton;
 
 
     public void Continue()
@@ -23,7 +27,19 @@ public class LevelCompletedScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (levelToUnlock > 5)
+        {
+            if (continueButton != null)
+            {
+                continueButton.interactable = false;
+                TextMeshProUGUI btnText=continueButton.GetComponentInChildren<TextMeshProUGUI>();
+                if(btnText != null)
+                {
+                    btnText.text = "Game completed!";
+                    btnText.autoSizeTextContainer = true;
+                }
+            }
+        }
     }
 
     // Update is called once per frame

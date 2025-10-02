@@ -27,6 +27,13 @@ public class LevelSelectorScript : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        PlayerPrefs.SetInt("levelReached", 1);
+        PlayerPrefs.Save();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelect");
+    }
+
     // Update is called once per frame
     void Update()
     {

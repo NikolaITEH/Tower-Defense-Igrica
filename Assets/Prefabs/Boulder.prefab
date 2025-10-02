@@ -86,7 +86,7 @@ MonoBehaviour:
   launchHeight: 10
   gravity: -9.81
   explosionRadius: 10
-  damage: 70
+  damage: 65
   impactEffect: {fileID: 8808602307994411896, guid: ae86abdc3cc78c04e9c319426055dcbb, type: 3}
 --- !u!135 &-2789445874730814933
 SphereCollider:
